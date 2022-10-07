@@ -5,6 +5,11 @@
 #include <d3d12.h>
 #include <DirectXMath.h>
 #include <d3dx12.h>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
+using namespace std;
 
 /// <summary>
 /// 3Dオブジェクト
@@ -137,9 +142,11 @@ private: // 静的メンバ変数
 	// インデックスバッファビュー
 	static D3D12_INDEX_BUFFER_VIEW ibView;
 	// 頂点データ配列
-	static VertexPosNormalUv vertices[vertexCount];
+	//static VertexPosNormalUv vertices[vertexCount];
+	static std::vector<VertexPosNormalUv> vertices;
 	// 頂点インデックス配列
-	static unsigned short indices[planeCount * 3];
+	//static unsigned short indices[planeCount * 3];
+	static std::vector<unsigned short> indices;
 
 private:// 静的メンバ関数
 	/// <summary>

@@ -75,6 +75,17 @@ void GameScene::Update()
 		else if (input->PushKey(DIK_A)) { Object3d::CameraMoveVector({ -1.0f,0.0f,0.0f }); }
 	}
 
+	//スペースキーを押していたら
+	if (input->PushKey(DIK_SPACE))
+	{
+		//現在の座標を取得
+		XMFLOAT2 position = sprite1->GetPosition();
+		//移動後の座標を計算
+		position.x += 1.0f;
+		//座標の変更を反映
+		sprite1->SetPosition(position);
+	}
+
 	object3d->Update();
 }
 
@@ -92,8 +103,8 @@ void GameScene::Draw()
 	/// <summary>
 	/// ここに背景スプライトの描画処理を追加できる
 	/// </summary>
-	sprite1->Draw();
-	sprite2->Draw();
+	/*sprite1->Draw();
+	sprite2->Draw();*/
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
