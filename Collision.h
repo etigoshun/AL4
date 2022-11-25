@@ -17,4 +17,20 @@ public:
 	/// <returns>交差しているか否か</returns>
 	static bool CheckSphere2Plane(const Sphere& sphere, const Plane& plane, DirectX::XMVECTOR* inter = nullptr);
 
+	/// <summary>
+	/// テント三角形の最近接点を求める
+	/// </summary>
+	/// <param name="point">点</param>
+	/// <param name="triangle">三角形</param>
+	/// <param name="closest">最近接点(出力用)</param>
+	static void ClosestPtPoint2Triangle(const DirectX::XMVECTOR& point, const Triangle& triangle, DirectX::XMVECTOR* closest);
+
+	/// <summary>
+	/// 球と法線付き三角形の当たりチェック
+	/// </summary>
+	/// <param name="sphere"></param>
+	/// <param name="triangle"></param>
+	/// <param name="inter"></param>
+	/// <returns></returns>
+	static bool CheckSphere2Triangle(const Sphere& sphere, const Triangle& triangle, DirectX::XMVECTOR* inter = nullptr);
 };

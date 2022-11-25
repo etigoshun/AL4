@@ -61,6 +61,12 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 	//平面の初期値を設定
 	plane.normal = XMVectorSet(0, 1, 0, 0);		//法線ベクトル
 	plane.distance = 0.0f;						//原点(0,0,0)からの距離
+
+	//三角形の初期値を設定
+	triangle.p0 = XMVectorSet(-1.0f, 0, -1.0f, 1);			//左手前
+	triangle.p1 = XMVectorSet(-1.0f, 0, +1.0f, 1);			//左奥
+	triangle.p2 = XMVectorSet(+1.0f, 0, 1.0f, 1);			//右手前
+	triangle.normal = XMVectorSet(0.0f, 1.0f, 0.0f, 0);		//上向き
 }
 
 void GameScene::Update()
@@ -95,12 +101,12 @@ void GameScene::Update()
 	//球移動
 	{
 		XMVECTOR moveY = XMVectorSet(0, 0.01f, 0, 0);
-		if (input->PushKey(DIK_NUMPAD8)) { sphere.center += moveY; }
-		else if (input->PushKey(DIK_NUMPAD2)) { sphere.center -= moveY; }
+		if (input->PushKey(DIK_UP)) { sphere.center += moveY; }
+		else if (input->PushKey(DIK_DOWN)) { sphere.center -= moveY; }
 
 		XMVECTOR moveX = XMVectorSet(0.01f, 0, 0, 0);
-		if (input->PushKey(DIK_NUMPAD6)) { sphere.center += moveX; }
-		else if (input->PushKey(DIK_NUMPAD4)) { sphere.center -= moveX; }
+		if (input->PushKey(DIK_RIGHT)) { sphere.center += moveX; }
+		else if (input->PushKey(DIK_LEFT)) { sphere.center -= moveX; }
 	}
 	//stringstreamで変数の値を埋め込んで整形する
 	std::ostringstream spherestr;
@@ -114,7 +120,7 @@ void GameScene::Update()
 
 	//球と平面の当たり判定
 	XMVECTOR inter;
-	bool hit = Collision::CheckSphere2Plane(sphere, plane, &inter);
+	bool hit = Collision::CheckSphere2Triangle(sphere, triangle, &inter);
 	if (hit)
 	{
 		debugText.Print("HIT", 50, 200, 1.0f);
