@@ -39,6 +39,12 @@ public:
 	XMVECTOR p2;
 	//法線ベクトル
 	XMVECTOR normal;
+
+public:
+	/// <summary>
+	/// 法線の計算
+	/// </summary>
+	void ComputeNormal();
 };
 
 /// <summary>
