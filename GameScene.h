@@ -73,5 +73,7 @@ private: // メンバ変数
 	Plane plane;
 	//当たり判定三角形
 	Triangle triangle;
+	//当たり判定　レイ
+	Ray ray;
 };
 

@@ -40,3 +40,14 @@ public:
 	//法線ベクトル
 	XMVECTOR normal;
 };
+
+/// <summary>
+/// レイ(半直線)
+/// </summary>
+struct Ray
+{
+	//視点座標
+	XMVECTOR start = { 0,0,0,1 };
+	//方向
+	XMVECTOR dir = { 1,0,0,0 };
+};
